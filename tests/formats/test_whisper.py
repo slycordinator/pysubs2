@@ -1,7 +1,8 @@
-import pysubs2
+from pysubs2 import SSAFile, load_from_whisper
+from typing import Union, List, Any
 
 
-TRANSCRIBE_RESULT = {
+TRANSCRIBE_RESULT: dict[str, Union[str, List[dict[str, Any]]]] = {
     'text': ' And so my fellow Americans ask not what your country can do for you, ask what you can do for your country.',
     'segments': [{'id': 0, 'seek': 0, 'start': 0.0, 'end': 7.6000000000000005,
                   'text': ' And so my fellow Americans ask not what your country can do for you,',
@@ -92,7 +93,7 @@ If you smoke weed and drive drive it's the DWI. They're both legal
 
 
 def test_read_whisper_transcript_dict() -> None:
-    subs = pysubs2.load_from_whisper(TRANSCRIBE_RESULT)
+    subs = load_from_whisper(TRANSCRIBE_RESULT)
 
     e1, e2 = subs
     assert e1.start == 0
@@ -104,7 +105,7 @@ def test_read_whisper_transcript_dict() -> None:
 
 
 def test_read_whisper_segments_list() -> None:
-    subs = pysubs2.load_from_whisper(TRANSCRIBE_RESULT["segments"])  # type: ignore[arg-type]
+    subs = load_from_whisper(TRANSCRIBE_RESULT["segments"])  # type: ignore[arg-type]
 
     e1, e2 = subs
     assert e1.start == 0
@@ -116,5 +117,5 @@ def test_read_whisper_segments_list() -> None:
 
 
 def test_parse_whisper_jax() -> None:
-    subs = pysubs2.SSAFile.from_string(WHISPER_JAX_INPUT)
+    subs = SSAFile.from_string(WHISPER_JAX_INPUT)
     assert subs.to_string("srt").strip() == WHISPER_JAX_OUTPUT_SRT.strip()
