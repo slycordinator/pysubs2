@@ -1,4 +1,4 @@
-from pysubs2.ssafile import SSAFile
+from pysubs2 import SSAFile
 
 SAMI_INPUT1 = """\
 <SAMI>
