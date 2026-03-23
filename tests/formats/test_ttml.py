@@ -5,7 +5,7 @@ pysubs2.formats.ttml tests
 
 import pytest
 from pysubs2 import SSAFile, SSAEvent, SSAStyle
-import pysubs2
+from pysubs2 import load as LoadSubFile
 from pathlib import Path
 
 def get_data_path(filename: str) -> Path:
@@ -20,7 +20,7 @@ def get_data_path(filename: str) -> Path:
     ]
 )
 def test_example_parse(ttml_filename: str, ass_ref_filename: str) -> None:
-    subs = pysubs2.load(get_data_path(ttml_filename))
+    subs = LoadSubFile(get_data_path(ttml_filename))
     ass_text = subs.to_string("ass")
     print(ass_text)
     ass_ref_path = get_data_path(ass_ref_filename)
@@ -31,7 +31,7 @@ def test_example_parse(ttml_filename: str, ass_ref_filename: str) -> None:
 
 def test_example_parse_apple() -> None:
     """See #108"""
-    subs = pysubs2.load(
+    subs = LoadSubFile(
         get_data_path("ttml_example_apple.ttml"),
         ignore_par_time_offset=True
     )
