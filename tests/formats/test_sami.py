@@ -1,5 +1,4 @@
-import pysubs2
-
+from pysubs2.ssafile import SSAFile
 
 SAMI_INPUT1 = """\
 <SAMI>
@@ -155,11 +154,11 @@ President John F. Kennedy Speech
 
 
 def test_sami_simple():
-    subs = pysubs2.SSAFile.from_string(SAMI_INPUT1)
+    subs = SSAFile.from_string(SAMI_INPUT1)
     assert subs.to_string("srt").strip() == SAMI_OUTPUT1.strip()
 
 
 def test_sami_basic_tags():
-    subs = pysubs2.SSAFile.from_string(SAMI_INPUT2)
+    subs = SSAFile.from_string(SAMI_INPUT2)
     assert len(subs) == 1
     assert subs[0].text == r"Test of {\b1}bold {\i1}italic {\u1}underline {\s1}strikethrough{\s0}{\u0}{\i0}{\b0}"
