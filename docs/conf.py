@@ -20,7 +20,7 @@ from pathlib import Path
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, str(Path('..').resolve()))
-import pysubs2
+from pysubs2 import VERSION as pysubs_version
 
 # -- General configuration ------------------------------------------------
 
@@ -58,7 +58,7 @@ copyright = u'2014-2024, Tomas Karabela'
 # built documents.
 #
 # The short X.Y version.
-version = pysubs2.VERSION
+version = pysubs_version
 # The full version, including alpha/beta/rc tags.
 release = version
 
