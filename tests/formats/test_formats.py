@@ -4,7 +4,7 @@ import pytest
 
 from pysubs2.exceptions import UnknownFormatIdentifierError, UnknownFileExtensionError, FormatAutodetectionError
 from pysubs2.formats import get_format_class, get_format_identifier, get_file_extension, autodetect_format
-from pysubs2.ssafile import SSAFile
+from pysubs2 import SSAFile
 
 def test_identifier_to_class() -> None:
     with pytest.raises(UnknownFormatIdentifierError) as exc_info:
